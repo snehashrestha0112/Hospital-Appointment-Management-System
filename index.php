@@ -1,6 +1,20 @@
 <?php
-session_start();
-$flash='';
+require_once __DIR__ . '/hms.php';
+hms_start_session();
+
+if (!empty($_SESSION['role'])) {
+    if ($_SESSION['role'] === 'patient') {
+        hms_redirect('admin-panel.php');
+    }
+    if ($_SESSION['role'] === 'doctor') {
+        hms_redirect('doctor-panel.php');
+    }
+    if ($_SESSION['role'] === 'admin') {
+        hms_redirect('admin-panel1.php');
+    }
+}
+
+$flash = hms_flash();
 ?>
 <!DOCTYPE html>
 <html lang="en">
